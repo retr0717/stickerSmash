@@ -8,18 +8,26 @@ import Button from "./components/Button";
 import { useState } from "react";
 import IconButton from "./components/IconButton";
 import CircleButton from "./components/CircleButton";
+import EmojiPicker from "./components/EmojiPicker";
 
 const PlaceholderImage = require("./assets/images/background-image.png");
 
 export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showAppOptions, setShowAppOptions] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const onReset = () => {
     setShowAppOptions(false);
   };
 
-  const onAddSticker = () => {};
+  const onAddSticker = () => {
+    setIsModalVisible(true);
+  };
+
+  const onModalClose = () => {
+    setIsModalVisible(false);
+  };
 
   const onSaveImageAsync = async () => {};
 
@@ -72,6 +80,10 @@ export default function App() {
           />
         </View>
       )}
+      <EmojiPicker
+        isVisible={isModalVisible}
+        onClose={onModalClose}
+      ></EmojiPicker>
       <StatusBar style="auto" />
     </View>
   );
